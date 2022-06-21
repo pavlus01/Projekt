@@ -1,0 +1,12 @@
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\bin\Debug\net5.0\StockApp.Shared.deps.json
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\bin\Debug\net5.0\StockApp.Shared.dll
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\bin\Debug\net5.0\StockApp.Shared.pdb
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\obj\Debug\net5.0\StockApp.Shared.csproj.AssemblyReference.cache
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\obj\Debug\net5.0\StockApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\obj\Debug\net5.0\StockApp.Shared.AssemblyInfoInputs.cache
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\obj\Debug\net5.0\StockApp.Shared.AssemblyInfo.cs
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\obj\Debug\net5.0\StockApp.Shared.csproj.CoreCompileInputs.cache
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\obj\Debug\net5.0\StockApp.Shared.dll
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\obj\Debug\net5.0\refint\StockApp.Shared.dll
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\obj\Debug\net5.0\StockApp.Shared.pdb
+C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Shared\obj\Debug\net5.0\ref\StockApp.Shared.dll

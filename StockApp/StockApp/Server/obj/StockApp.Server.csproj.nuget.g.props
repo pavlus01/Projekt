@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\PAWEL\.nuget\packages\</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.1.0</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="C:\Users\PAWEL\.nuget\packages\" />
+  </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)xomega.framework.blazor\4.0.0\buildTransitive\Xomega.Framework.Blazor.props" Condition="Exists('$(NuGetPackageRoot)xomega.framework.blazor\4.0.0\buildTransitive\Xomega.Framework.Blazor.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.themes\19.1.0.59\buildTransitive\Syncfusion.Blazor.Themes.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.themes\19.1.0.59\buildTransitive\Syncfusion.Blazor.Themes.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.core\19.1.0.59\buildTransitive\Syncfusion.Blazor.Core.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.core\19.1.0.59\buildTransitive\Syncfusion.Blazor.Core.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.spinner\19.1.0.59\buildTransitive\Syncfusion.Blazor.Spinner.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.spinner\19.1.0.59\buildTransitive\Syncfusion.Blazor.Spinner.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.popups\19.1.0.59\buildTransitive\Syncfusion.Blazor.Popups.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.popups\19.1.0.59\buildTransitive\Syncfusion.Blazor.Popups.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.splitbuttons\19.1.0.59\buildTransitive\Syncfusion.Blazor.SplitButtons.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.splitbuttons\19.1.0.59\buildTransitive\Syncfusion.Blazor.SplitButtons.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.data\19.1.0.59\buildTransitive\Syncfusion.Blazor.Data.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.data\19.1.0.59\buildTransitive\Syncfusion.Blazor.Data.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.lists\19.1.0.59\buildTransitive\Syncfusion.Blazor.Lists.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.lists\19.1.0.59\buildTransitive\Syncfusion.Blazor.Lists.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.inputs\19.1.0.59\buildTransitive\Syncfusion.Blazor.Inputs.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.inputs\19.1.0.59\buildTransitive\Syncfusion.Blazor.Inputs.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.navigations\19.1.0.59\buildTransitive\Syncfusion.Blazor.Navigations.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.navigations\19.1.0.59\buildTransitive\Syncfusion.Blazor.Navigations.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.dropdowns\19.1.0.59\buildTransitive\Syncfusion.Blazor.DropDowns.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.dropdowns\19.1.0.59\buildTransitive\Syncfusion.Blazor.DropDowns.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.calendars\19.1.0.59\buildTransitive\Syncfusion.Blazor.Calendars.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.calendars\19.1.0.59\buildTransitive\Syncfusion.Blazor.Calendars.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.grid\19.1.0.59\buildTransitive\Syncfusion.Blazor.Grid.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.grid\19.1.0.59\buildTransitive\Syncfusion.Blazor.Grid.props')" />
+    <Import Project="$(NuGetPackageRoot)xomega.syncfusion.blazor\4.0.0\buildTransitive\Xomega.Syncfusion.Blazor.props" Condition="Exists('$(NuGetPackageRoot)xomega.syncfusion.blazor\4.0.0\buildTransitive\Xomega.Syncfusion.Blazor.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor\20.1.0.61\buildTransitive\Syncfusion.Blazor.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor\20.1.0.61\buildTransitive\Syncfusion.Blazor.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.components.webassembly.authentication\5.0.15\buildTransitive\Microsoft.AspNetCore.Components.WebAssembly.Authentication.props" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.components.webassembly.authentication\5.0.15\buildTransitive\Microsoft.AspNetCore.Components.WebAssembly.Authentication.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\5.0.15\build\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\5.0.15\build\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.identity.ui\5.0.15\buildTransitive\Microsoft.AspNetCore.Identity.UI.props" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.identity.ui\5.0.15\buildTransitive\Microsoft.AspNetCore.Identity.UI.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\PAWEL\.nuget\packages\microsoft.entityframeworkcore.tools\5.0.15</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgMicrosoft_AspNetCore_Components_WebAssembly_Server Condition=" '$(PkgMicrosoft_AspNetCore_Components_WebAssembly_Server)' == '' ">C:\Users\PAWEL\.nuget\packages\microsoft.aspnetcore.components.webassembly.server\5.0.15</PkgMicrosoft_AspNetCore_Components_WebAssembly_Server>
+  </PropertyGroup>
+</Project>

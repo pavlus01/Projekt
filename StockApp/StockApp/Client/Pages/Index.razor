@@ -1,0 +1,29 @@
+﻿@page "/"
+
+<AuthorizeView>
+    <NotAuthorized>
+        <h1>Hello new user!</h1>
+
+    Welcome to StockApp. Log in to discover the outstanding world of trading!
+    </NotAuthorized>
+    <Authorized>
+        <h1>Hello @authState.User.Identity.Name!</h1>
+        Great to see you back!
+    </Authorized>
+</AuthorizeView>
+
+<p></p>
+<SfCalendar TValue="DateTime?"></SfCalendar>
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+@code{
+    [CascadingParameter]
+    private Task<AuthenticationState> _authState { get; set; }
+
+    private AuthenticationState authState;
+
+    protected override async Task OnInitializedAsync()
+    {
+        authState = await _authState;
+    }
+}
