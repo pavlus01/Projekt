@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using Microsoft.VisualBasic
 
 <AuthorizeView>
     <NotAuthorized>
@@ -15,7 +16,6 @@
 <p></p>
 <SfCalendar TValue="DateTime?"></SfCalendar>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
 @code{
     [CascadingParameter]
     private Task<AuthenticationState> _authState { get; set; }
@@ -24,6 +24,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine(DateAndTime.DateAdd(DateInterval.Day, -3, DateTime.Today).ToString("yyyy-MM-dd"));
         authState = await _authState;
     }
 }

@@ -25,9 +25,9 @@ namespace StockApp.Client
 
             // Supply HttpClient instances that include access tokens when making requests to the server project
             builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("StockApp.ServerAPI"));
+            builder.Services.AddSyncfusionBlazor(options => { options.IgnoreScriptIsolation = true; });
 
             builder.Services.AddApiAuthorization();
-            builder.Services.AddSyncfusionBlazor();
             await builder.Build().RunAsync();
         }
     }

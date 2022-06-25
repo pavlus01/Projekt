@@ -111,7 +111,7 @@ using Syncfusion.Blazor.Calendars;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 33 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Shared\NavMenu.razor"
+#line 28 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

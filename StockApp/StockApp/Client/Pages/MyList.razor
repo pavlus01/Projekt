@@ -1,0 +1,77 @@
+﻿@page "/MyList"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using StockApp.Server.Data.Models
+@inject IJSRuntime js
+@attribute [Authorize]
+@inject HttpClient Http
+@inject NavigationManager navigationManager
+
+<h1>MyList</h1>
+@if(MyyList.Count == 0)
+{
+     <p><em>List is empty. Add company by clicking on plus ("+") button.</em></p>
+} else
+{
+<table>
+    <thead>
+        <th>Logo</th>
+        <th>Name</th>
+        <th>Market</th>
+        <th>Locale</th>
+        <th>City</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        @foreach (var mList in MyyList)
+        {
+        <tr>
+            <td><img src=@mList.logo_url alt="logo" width="120" height="91"/></td>
+            <td>@mList.name</td>
+            <td>@mList.market</td>
+            <td>@mList.locale</td>
+            <td>@mList.city</td>
+            <td>
+                <button class="btn btn-success" @onclick="@(() => OpenDetails(mList.sname))">Details</button>
+                <button class="btn btn-success" @onclick="@(() => Delete(mList))">Delete</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+
+
+@code {
+    public List<TickerDet> MyyList = new List<TickerDet>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        MyyList = await Http.GetFromJsonAsync<List<TickerDet>>("WeatherForecast/MyList");
+    }
+
+    private void OpenDetails(string SName)
+    {
+        navigationManager.NavigateTo($"/LookingForCompany/{SName}");
+    }
+
+    private async void Delete (TickerDet tickerDet)
+    {
+        if (await js.InvokeAsync<bool>("confirm", "Are you sure?"))
+        {
+            await  Http.DeleteAsync("WeatherForecast/MyList/" + tickerDet.sname);
+           navigationManager.NavigateTo($"/MyList", forceLoad: true);
+
+        }
+    }
+}
+
+<style>
+    table {
+    border-spacing: 80px 50px;
+    border: 7px solid black;
+    table-layout: fixed;
+    width: 1550px;
+    height: 300px;
+}
+</style>

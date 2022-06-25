@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json.Linq;
+using System.Collections;
 
 namespace StockApp.Server.Data.Models
 {
@@ -10,5 +11,6 @@ namespace StockApp.Server.Data.Models
         public string status { get; set; }
         public string request_id { get; set; }
         public int count { get; set; }
+
     }
 }

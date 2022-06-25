@@ -119,34 +119,48 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
-using StockApp.Shared;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 8 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
-using Syncfusion.Blazor.DropDowns;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 9 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
-using Syncfusion.Blazor.Data;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 10 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
-using Syncfusion.Blazor.Layouts;
+using Microsoft.VisualBasic;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
+using StockApp.Shared;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
+using StockApp.Shared.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 10 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
+using Syncfusion.Blazor.DropDowns;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
+using Syncfusion.Blazor.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
+using Syncfusion.Blazor.Layouts;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
            [Authorize]
 
 #line default
@@ -161,30 +175,37 @@ using Syncfusion.Blazor.Layouts;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
+#line 50 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\LookingForCompany.razor"
        
-    Type models = typeof(EmployeeData);
+    Type models = typeof(RowData);
+    RowData chosen = new RowData();
     public class EmployeeData
     {
         public string FirstName { get; set; }
         public string Designation { get; set; }
         public string Eimg { get; set; }
     }
-    List<EmployeeData> Data = new List<EmployeeData>
+
+    static List<RowData> Data = new List<RowData>();
+
+    protected override async Task OnInitializedAsync()
     {
-        new EmployeeData() { FirstName = "Andrew Fuller",  Designation = "Team Lead", Eimg= "7" },
-        new EmployeeData() { FirstName = "Anne Dodsworth", Designation = "Developer", Eimg= "1" },
-        new EmployeeData() { FirstName = "Janet Leverling", Designation = "HR", Eimg= "3" },
-        new EmployeeData() { FirstName = "Laura Callahan", Designation = "Product Manager", Eimg= "2" },
-        new EmployeeData() { FirstName = "Margaret Peacock", Designation = "Developer", Eimg= "6" },
-        new EmployeeData() { FirstName = "Michael Suyama", Designation = "Team Lead", Eimg= "9" },
-        new EmployeeData() { FirstName = "Nancy Davolio", Designation = "Product Manager", Eimg= "4" },
-        new EmployeeData() { FirstName = "Robert King", Designation = "Developer", Eimg= "8" },
-        new EmployeeData() { FirstName = "Steven Buchanan", Designation = "CEO", Eimg= "10" }
-    };
-     void onAction()
+        if (Data.Count == 0)
+        {
+            try
+            {
+                Data = await Http.GetFromJsonAsync<List<RowData>>("WeatherForecast");
+            }
+            catch (AccessTokenNotAvailableException exception)
+            {
+                exception.Redirect();
+            }
+        }
+    }
+
+    void onAction(string SName)
     {
-        navigationManager.NavigateTo($"/students");
+         navigationManager.NavigateTo($"/LookingForCompany/{SName}");
     }
 
 

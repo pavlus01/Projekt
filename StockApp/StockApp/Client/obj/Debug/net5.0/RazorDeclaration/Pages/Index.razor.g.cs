@@ -103,6 +103,13 @@ using Syncfusion.Blazor.Calendars;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\Index.razor"
+using Microsoft.VisualBasic;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -121,6 +128,7 @@ using Syncfusion.Blazor.Calendars;
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine(DateAndTime.DateAdd(DateInterval.Day, -3, DateTime.Today).ToString("yyyy-MM-dd"));
         authState = await _authState;
     }
 

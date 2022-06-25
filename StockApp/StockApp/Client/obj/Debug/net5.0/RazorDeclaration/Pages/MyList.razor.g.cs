@@ -103,8 +103,36 @@ using Syncfusion.Blazor.Calendars;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/counter")]
-    public partial class Counter : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 2 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\MyList.razor"
+using Microsoft.AspNetCore.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\MyList.razor"
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\MyList.razor"
+using StockApp.Server.Data.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\MyList.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/MyList")]
+    public partial class MyList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -112,18 +140,36 @@ using Syncfusion.Blazor.Calendars;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 9 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\Counter.razor"
+#line 45 "C:\Users\PAWEL\Desktop\PROJEKT2\StockApp\StockApp\Client\Pages\MyList.razor"
        
-    private int currentCount = 0;
+    public List<TickerDet> MyyList = new List<TickerDet>();
 
-    private void IncrementCount()
+    protected async override Task OnInitializedAsync()
     {
-        currentCount++;
+        MyyList = await Http.GetFromJsonAsync<List<TickerDet>>("WeatherForecast/MyList");
+    }
+
+    private void OpenDetails(string SName)
+    {
+        navigationManager.NavigateTo($"/LookingForCompany/{SName}");
+    }
+
+    private async void Delete (TickerDet tickerDet)
+    {
+        if (await js.InvokeAsync<bool>("confirm", "Are you sure?"))
+        {
+            await  Http.DeleteAsync("WeatherForecast/MyList/" + tickerDet.sname);
+           navigationManager.NavigateTo($"/MyList", forceLoad: true);
+
+        }
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
     }
 }
 #pragma warning restore 1591

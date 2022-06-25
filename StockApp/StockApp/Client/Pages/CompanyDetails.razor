@@ -1,0 +1,151 @@
+﻿@page "/LookingForCompany/{sName}"
+@inject NavigationManager navigationManager
+@inject HttpClient Http
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Threading.Tasks
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.VisualBasic
+@using Newtonsoft.Json
+@using StockApp.Server.Data.Models
+@using StockApp.Shared
+@using StockApp.Shared.Models
+@using Syncfusion.Blazor.Charts
+@using Syncfusion.Blazor
+@using System.Net.Http.Json
+@inject IJSRuntime js
+@using System.Text
+@attribute [Authorize]
+
+@if(tickerDet is null)
+{
+    <p><em>Loading newest data. It may take few minutes...</em></p>
+} else if(tickerDet.name == "null")
+{
+     <p><em>There is no such company in our system :( </em></p>
+      <button class="btn btn-success" @onclick="@(() => GoBack())">Back</button>
+}
+else 
+{
+    <SfDashboardLayout>
+        <DashboardLayoutPanels>
+            <DashboardLayoutPanel>
+                <HeaderTemplate><div><h1>Company Information: @tickerDet.name </h1></div> <button class="btn btn-success" @onclick="@(() => AddToMyList())">+</button>
+                    <button class="btn btn-success" @onclick="@(() => GoBack())">Back</button></HeaderTemplate>
+                <ContentTemplate >
+                    <div><img alt="logo" src="@tickerDet.logo_url" width="150" height="200" hspace="700"  /></div>
+                    <div style = "font-family:georgia,garamond,serif;font-size:18px;font-style:italic;"> Name: @tickerDet.name </div>
+                    <div style = "font-family:georgia,garamond,serif;font-size:18px;font-style:italic;"> Market: @tickerDet.market </div>
+                    <div style = "font-family:georgia,garamond,serif;font-size:18px;font-style:italic;"> Localisation: @tickerDet.locale </div>
+                    <div style = "font-family:georgia,garamond,serif;font-size:18px;font-style:italic;"> Address: @tickerDet.address </div>
+                    <div style = "font-family:georgia,garamond,serif;font-size:18px;font-style:italic;"> City: @tickerDet.city </div>
+                    <div style = "font-family:georgia,garamond,serif;font-size:18px;font-style:italic;"> Description: @tickerDet.description </div>
+                </ContentTemplate>
+                <ContentTemplate>
+                    @if (Data.Count != 0)
+                    {
+                        <div class="@loadClass">
+                        </div>    <div class="@loadDiv">
+                            <SfStockChart Title="@chartName" Theme="@theme">
+                                <StockChartEvents OnLoaded="@ChartLoaded"></StockChartEvents>
+                                <StockChartPrimaryXAxis>
+                                    <StockChartAxisMajorGridLines Width="0"></StockChartAxisMajorGridLines>
+                                    <StockChartAxisCrosshairTooltip Enable="true"></StockChartAxisCrosshairTooltip>
+                                </StockChartPrimaryXAxis>
+                                <StockChartPrimaryYAxis>
+                                    <StockChartAxisLineStyle Width="0"></StockChartAxisLineStyle>
+                                    <StockChartAxisMajorTickLines Width="0"></StockChartAxisMajorTickLines>
+                                </StockChartPrimaryYAxis>
+                                <StockChartTooltipSettings Enable="true"></StockChartTooltipSettings>
+                                <StockChartCrosshairSettings Enable="true"></StockChartCrosshairSettings>
+                                <StockChartSeriesCollection>
+                                    <StockChartSeries DataSource="@Data" Type="ChartSeriesType.HiloOpenClose" XName="x"></StockChartSeries>
+                                </StockChartSeriesCollection>
+                                <StockChartChartArea>
+                                    <StockChartChartAreaBorder Width="0"></StockChartChartAreaBorder>
+                                </StockChartChartArea>
+                            </SfStockChart>
+                        </div>
+                    }
+                </ContentTemplate>
+            </DashboardLayoutPanel>
+        </DashboardLayoutPanels>
+        </SfDashboardLayout>}
+
+
+@code {
+    [Parameter]
+    public string sName { get; set; }
+    // [Parameter]
+    //public string KeyAdded { get; set; }
+    [Parameter]
+    public TickerDet tickerDet { get; set; }
+    List<ChartData> Data = new List<ChartData>();
+    string chartName;
+    Theme theme = Theme.Bootstrap4;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            string ss = (string) sName;
+            tickerDet = await Http.GetFromJsonAsync<TickerDet>("WeatherForecast/info/" + ss);
+            tickerDet.logo_url = tickerDet.logo_url + "?apiKey=ZqJe9jQrip7ulI2Pa6fkICLddpneFoqK";
+            Data = await Http.GetFromJsonAsync<List<ChartData>>("WeatherForecast/chart/" + ss);
+            chartName = sName + " Stock Price";
+            //Console.WriteLine(Data.Count + "    " + Data[0].x + "     " + Data[1].x);
+            //Console.WriteLine("OTO POJERZANA O BLAD DATA: " + DateAndTime.DateAdd(DateInterval.Day, -1, DateTime.Today).ToString("yyyy - MM - dd"));
+
+            var json = JsonConvert.SerializeObject(tickerDet);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await Http.PostAsync("WeatherForecast/WatchedList", data);
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+    string loadClass = "stockchartloader";
+    string loadDiv = "stockchartdiv";
+    void ChartLoaded(StockChartEventArgs args)
+    {
+        loadClass = "";
+        loadDiv = "";
+        StateHasChanged();
+    }
+
+    async void AddToMyList()
+    {
+        if (await js.InvokeAsync<bool>("confirm", "Do you want to add this company to your List? (If your company is already in Your List nothing will happen)"))
+        {
+            var json = JsonConvert.SerializeObject(tickerDet);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await Http.PostAsync("WeatherForecast/MyList", data);
+
+            //var result = await response.Content.ReadAsStringAsync();
+        }
+    }
+
+    void GoBack()
+    {
+        navigationManager.NavigateTo($"/LookingForCompany");
+    }
+}
+<style>
+    .stockchartloader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #7a0fff;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 46%;
+            left: 46%;
+            border-radius: 50%;
+            -webkit-animation: loader 2s linear infinite;
+            animation: loader 2s linear infinite;
+        }
+        .stockchartdiv {
+            visibility: hidden;
+        }
+</style>
